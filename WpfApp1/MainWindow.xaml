@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Shape Builder - SDC" Height="515" Width="900" MinHeight="400" MinWidth="600">
-    <Grid>
+        Title="Shape Builder - SDC" Height="490" Width="980" MinHeight="400" MinWidth="600">
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="300" />
+            <ColumnDefinition Width="*" MinWidth="350" />
             <ColumnDefinition Width="*" MaxWidth="225" />
         </Grid.ColumnDefinitions>
 
-        <Canvas x:Name="canvas_container" Background="AntiqueWhite" >
-            <Button x:Name="canvas_clr_btn" Canvas.Bottom="10" Canvas.Left="10" Click="handleClearCanva" Panel.ZIndex="5">clear</Button>
-        </Canvas>
+        <Canvas x:Name="canvas_container" Background="AntiqueWhite" Margin="3"></Canvas>
 
-        <ListBox Grid.Column="1" Background="WhiteSmoke">
+        <ListBox Grid.Column="1" Background="WhiteSmoke" Margin="0, 3, 3, 3">
+            <ListBoxItem Width="210" >
+                <Button Width="200" x:Name="canvas_clr_btn" Canvas.Bottom="10" Canvas.Left="10" Click="handleClearCanva" Panel.ZIndex="5">clear</Button>
+            </ListBoxItem>
             <ListBoxItem Width="210">
                 <StackPanel Margin="5">
                     <Label Content="( x-axis1, y-axis1, x-axis2, y-axis2 )"/>
@@ -44,10 +45,9 @@
             <!-- Line -->
             <ListBoxItem Width="210">
                 <StackPanel Margin="5" >
-                    <Label Content="R1:( width, height ) || R2: ( t,r,b,l )"/>
+                    <Label Content="( Width, Height, Top, Left )"/>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -56,13 +56,12 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="rectangle_width" Grid.ColumnSpan="2" Margin="3" Width="80"/>
-                        <TextBox x:Name="rectangle_height" Margin="3" Grid.ColumnSpan="2" Grid.Column="2" Width="80"/>
 
-                        <TextBox x:Name="rectangle_top" Grid.Row="1" Margin="3" Grid.Column="0" Width="40"/>
-                        <TextBox x:Name="rectangle_right" Grid.Row="1" Margin="3" Grid.Column="1" Width="40"/>
-                        <TextBox x:Name="rectangle_bottom" Grid.Row="1" Margin="3" Grid.Column="2" Width="40"/>
-                        <TextBox x:Name="rectangle_left" Grid.Row="1" Margin="3" Grid.Column="3" Width="40"/>
+                        <TextBox x:Name="rectangle_width" Margin="3" Width="40"/>
+                        <TextBox x:Name="rectangle_height" Margin="3"  Grid.Column="1" Width="40"/>
+
+                        <TextBox x:Name="rectangle_top"  Margin="3" Grid.Column="2" Width="40"/>
+                        <TextBox x:Name="rectangle_left"  Margin="3" Grid.Column="3" Width="40"/>
                     </Grid>
                     <Button Margin="5" Click="handleCreateRectangle">Add Rectangle</Button>
                 </StackPanel>
@@ -70,10 +69,9 @@
             <!-- Rectangle -->
             <ListBoxItem Width="210">
                 <StackPanel Margin="5" >
-                    <Label Content="R1:( width, height ) || R2: ( t,r,b,l )"/>
+                    <Label Content="( Side, Top, Left )"/>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -82,23 +80,20 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="square_side" Grid.ColumnSpan="4" Margin="3" Width="80"/>
+                        <TextBox x:Name="square_side" Grid.ColumnSpan="2" Margin="3" Width="80"/>
 
-                        <TextBox x:Name="square_top" Grid.Row="1" Margin="3" Grid.Column="0" Width="40"/>
-                        <TextBox x:Name="square_right" Grid.Row="1" Margin="3" Grid.Column="1" Width="40"/>
-                        <TextBox x:Name="square_bottom" Grid.Row="1" Margin="3" Grid.Column="2" Width="40"/>
-                        <TextBox x:Name="square_left" Grid.Row="1" Margin="3" Grid.Column="3" Width="40"/>
+                        <TextBox x:Name="square_top"  Margin="3" Grid.Column="2" Width="40"/>
+                        <TextBox x:Name="square_left" Margin="3" Grid.Column="3" Width="40"/>
                     </Grid>
-                    <Button Margin="5" Click="handleCreateSquare">Add Square</Button>
+                    <Button Margin="5" Width="173" Click="handleCreateSquare">Add Square</Button>
                 </StackPanel>
             </ListBoxItem>
             <!-- Square -->
             <ListBoxItem Width="210">
                 <StackPanel Margin="5" >
-                    <Label Content="R1:( width, height ) || R2: ( t,r,b,l )"/>
+                    <Label Content="( Width, Height, Top, Left )"/>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -107,12 +102,10 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="ellipse_width" Grid.ColumnSpan="2" Margin="3" Width="80"/>
-                        <TextBox x:Name="ellipse_height" Margin="3" Grid.ColumnSpan="2" Grid.Column="2" Width="80"/>
+                        <TextBox x:Name="ellipse_width"  Margin="3" Width="40"/>
+                        <TextBox x:Name="ellipse_height" Margin="3"  Grid.Column="1" Width="40"/>
 
-                        <TextBox x:Name="ellipse_top" Grid.Row="1" Margin="3" Grid.Column="0" Width="40"/>
-                        <TextBox x:Name="ellipse_right" Grid.Row="1" Margin="3" Grid.Column="1" Width="40"/>
-                        <TextBox x:Name="ellipse_bottom" Grid.Row="1" Margin="3" Grid.Column="2" Width="40"/>
+                        <TextBox x:Name="ellipse_top" Grid.Row="1" Margin="3" Grid.Column="2" Width="40"/>
                         <TextBox x:Name="ellipse_left" Grid.Row="1" Margin="3" Grid.Column="3" Width="40"/>
                     </Grid>
                     <Button Margin="5" Click="handleCreateEllipse">Add Ellipse or Rectangle</Button>

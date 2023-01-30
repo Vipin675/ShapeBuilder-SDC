@@ -28,14 +28,11 @@ namespace WpfApp1
         private void handleClearCanva(object sender, RoutedEventArgs e)
         {
             canvas_container.Children.Clear();
-            canvas_container.Children.Add(canvas_clr_btn);
         }
 
         private void handleCreateLine(object sender, RoutedEventArgs e)
         {
             Line line = new Line();
-            Thickness thickness = new Thickness(101, -11, 362, 250);
-            line.Margin = thickness;
             line.Visibility = Visibility.Visible;
             line.StrokeThickness = 3;
             line.Stroke = Brushes.Black;
@@ -55,10 +52,12 @@ namespace WpfApp1
 
             rect.Width = Convert.ToDouble(rectangle_width.Text);
             rect.Height = Convert.ToDouble(rectangle_height.Text);
-            Canvas.SetTop(rect, Convert.ToDouble(rectangle_top.Text));
-            Canvas.SetRight(rect, Convert.ToDouble(rectangle_right.Text));
-            Canvas.SetBottom(rect, Convert.ToDouble(rectangle_bottom.Text));
-            Canvas.SetLeft(rect, Convert.ToDouble(rectangle_left.Text));
+
+            double top = Convert.ToDouble(rectangle_top.Text);
+            double left = Convert.ToDouble(rectangle_left.Text);
+
+            Canvas.SetTop(rect, top);
+            Canvas.SetLeft(rect, left);
 
             canvas_container.Children.Add(rect);
         }
@@ -66,14 +65,12 @@ namespace WpfApp1
         private void handleCreateSquare(object sender, RoutedEventArgs e)
         {
             Rectangle sqr = new Rectangle();
-            sqr.Stroke = new SolidColorBrush(Colors.MediumPurple);
-            sqr.Fill = new SolidColorBrush(Colors.ForestGreen);
+            sqr.Stroke = new SolidColorBrush(Colors.MediumVioletRed);
+            sqr.Fill = new SolidColorBrush(Colors.MediumPurple);
 
             sqr.Width = Convert.ToDouble(square_side.Text);
             sqr.Height = Convert.ToDouble(square_side.Text);
             Canvas.SetTop(sqr, Convert.ToDouble(square_top.Text));
-            Canvas.SetRight(sqr, Convert.ToDouble(square_right.Text));
-            Canvas.SetBottom(sqr, Convert.ToDouble(square_bottom.Text));
             Canvas.SetLeft(sqr, Convert.ToDouble(square_left.Text));
 
             canvas_container.Children.Add(sqr);
@@ -84,14 +81,12 @@ namespace WpfApp1
             // Add an Ellipse Element
             Ellipse myEllipse = new Ellipse();
             myEllipse.Stroke = Brushes.MediumPurple;
-            myEllipse.Fill = Brushes.ForestGreen;
+            myEllipse.Fill = Brushes.OrangeRed;
 
             myEllipse.Width = Convert.ToDouble(ellipse_width.Text);
             myEllipse.Height = Convert.ToDouble(ellipse_height.Text);
 
             Canvas.SetTop(myEllipse, Convert.ToDouble(ellipse_top.Text));
-            Canvas.SetRight(myEllipse, Convert.ToDouble(ellipse_right.Text));
-            Canvas.SetBottom(myEllipse, Convert.ToDouble(ellipse_bottom.Text));
             Canvas.SetLeft(myEllipse, Convert.ToDouble(ellipse_left.Text));
 
             canvas_container.Children.Add(myEllipse);
