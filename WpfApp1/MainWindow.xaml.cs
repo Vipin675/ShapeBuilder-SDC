@@ -91,5 +91,32 @@ namespace WpfApp1
 
             canvas_container.Children.Add(myEllipse);
         }
+
+        private void handleCreateTriangle(object sender, RoutedEventArgs e)
+        {
+            // Create a Polygon
+            Polygon myPolygon = new Polygon();
+            myPolygon.Stroke = Brushes.Black;
+            myPolygon.Fill = Brushes.LightSeaGreen;
+            myPolygon.StrokeThickness = 2;
+
+            // Create a collection of points for the Polygon
+            PointCollection myPointCollection = new PointCollection();
+
+            double x1 = Convert.ToDouble(triangle_x1.Text);
+            double y1 = Convert.ToDouble(triangle_y1.Text);
+            double x2 = Convert.ToDouble(triangle_x2.Text);
+            double y2 = Convert.ToDouble(triangle_y2.Text);
+            double x3 = Convert.ToDouble(triangle_x3.Text);
+            double y3 = Convert.ToDouble(triangle_y3.Text);
+
+            myPointCollection.Add(new Point(x1, y1));
+            myPointCollection.Add(new Point(x2, y2));
+            myPointCollection.Add(new Point(x3, y3));
+
+            // Set Polygon.Points to the PointCollection
+            myPolygon.Points = myPointCollection;
+            canvas_container.Children.Add(myPolygon);
+        }
     }
 }

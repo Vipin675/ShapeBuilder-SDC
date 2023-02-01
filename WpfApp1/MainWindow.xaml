@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Shape Builder - SDC" Height="460" Width="845" MinHeight="400" MinWidth="600">
+        Title="Shape Builder - SDC" Height="562" Width="941" MinHeight="400" MinWidth="600">
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -21,6 +21,7 @@
             <ListBoxItem Width="210" >
                 <Button Width="200" x:Name="canvas_clr_btn" Canvas.Bottom="10" Canvas.Left="10" Click="handleClearCanva" Panel.ZIndex="5">clear</Button>
             </ListBoxItem>
+            <!-- Line -->
             <ListBoxItem Width="210">
                 <StackPanel Margin="5">
                     <Label Content="( x-axis1, y-axis1, x-axis2, y-axis2 )"/>
@@ -42,7 +43,7 @@
                     <Button Margin="5" Click="handleCreateLine">Add Line</Button>
                 </StackPanel>
             </ListBoxItem>
-            <!-- Line -->
+            <!-- Rectangle -->
             <ListBoxItem Width="210">
                 <StackPanel Margin="5" >
                     <Label Content="( Width, Height, Top, Left )"/>
@@ -66,7 +67,7 @@
                     <Button Margin="5" Click="handleCreateRectangle">Add Rectangle</Button>
                 </StackPanel>
             </ListBoxItem>
-            <!-- Rectangle -->
+            <!-- Square -->
             <ListBoxItem Width="210">
                 <StackPanel Margin="5" >
                     <Label Content="( Side, Top, Left )"/>
@@ -88,7 +89,7 @@
                     <Button Margin="5" Width="173" Click="handleCreateSquare">Add Square</Button>
                 </StackPanel>
             </ListBoxItem>
-            <!-- Square -->
+            <!-- Circle -->
             <ListBoxItem Width="210">
                 <StackPanel Margin="5" >
                     <Label Content="( Width, Height, Top, Left )"/>
@@ -111,7 +112,32 @@
                     <Button Margin="5" Click="handleCreateEllipse">Add Ellipse or Circle</Button>
                 </StackPanel>
             </ListBoxItem>
-            <!-- Circle -->
+            <!-- Triangle -->
+            <ListBoxItem Width="210">
+                <StackPanel Margin="5" >
+                    <Label Content="(Col1:x1,y1; Col2:x2,y2; Col3:x3,y3)"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="triangle_x1" Margin="3" Width="50"/>
+                        <TextBox x:Name="triangle_y1" Margin="3"  Grid.Row="1" Width="50"/>
+
+                        <TextBox x:Name="triangle_x2" Margin="3"  Grid.Column="1" Width="50"/>
+                        <TextBox x:Name="triangle_y2" Margin="3" Grid.Row="1"  Grid.Column="1" Width="50"/>
+
+                        <TextBox x:Name="triangle_x3" Margin="3" Grid.Column="2" Width="50"/>
+                        <TextBox x:Name="triangle_y3" Margin="3" Grid.Row="2" Grid.Column="3" Width="50"/>
+                    </Grid>
+                    <Button Margin="5" Click="handleCreateTriangle">Add Triangle</Button>
+                </StackPanel>
+            </ListBoxItem>
         </ListBox>
     </Grid>
 </Window>
