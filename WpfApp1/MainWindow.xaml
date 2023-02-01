@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Shape Builder - SDC" Height="490" Width="980" MinHeight="400" MinWidth="600">
+        Title="Shape Builder - SDC" Height="460" Width="845" MinHeight="400" MinWidth="600">
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -108,7 +108,7 @@
                         <TextBox x:Name="ellipse_top" Grid.Row="1" Margin="3" Grid.Column="2" Width="40"/>
                         <TextBox x:Name="ellipse_left" Grid.Row="1" Margin="3" Grid.Column="3" Width="40"/>
                     </Grid>
-                    <Button Margin="5" Click="handleCreateEllipse">Add Ellipse or Rectangle</Button>
+                    <Button Margin="5" Click="handleCreateEllipse">Add Ellipse or Circle</Button>
                 </StackPanel>
             </ListBoxItem>
             <!-- Circle -->
