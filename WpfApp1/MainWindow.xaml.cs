@@ -8,10 +8,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media; // Brushes Colors
+using System.Windows.Media; // Brushes, Colors
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using System.IO;
 
 namespace WpfApp1
 {
@@ -30,6 +32,119 @@ namespace WpfApp1
             canvas_container.Children.Clear();
         }
 
+        private void handleChooseFile(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+
+            Nullable<bool> response = openFileDialog.ShowDialog();
+
+            if(response == true)
+            {
+                string filePath = openFileDialog.FileName;
+
+                try
+                {
+                    using (var reader = new StreamReader(filePath))
+                    {
+                        while(reader.EndOfStream == false)
+                        {
+                            var content = reader.ReadLine();
+                            string[] cell = content.Split(',').ToArray();
+                            switch (cell[0])
+                            {
+                                case "line":
+                                    Line line = new Line();
+                                    line.Visibility = Visibility.Visible;
+                                    line.StrokeThickness = 3;
+                                    line.Stroke = Brushes.Black;
+                                    line.X1 = Convert.ToDouble(cell[1]);
+                                    line.X2 = Convert.ToDouble(cell[3]);
+                                    line.Y1 = Convert.ToDouble(cell[2]);
+                                    line.Y2 = Convert.ToDouble(cell[4]);
+
+                                    canvas_container.Children.Add(line);
+                                    break;
+                                case "rectangle":
+                                    Rectangle rect = new Rectangle();
+                                    rect.Stroke = new SolidColorBrush(Colors.MediumPurple);
+                                    rect.Fill = new SolidColorBrush(Colors.ForestGreen);
+
+                                    rect.Width = Convert.ToDouble(cell[1]);
+                                    rect.Height = Convert.ToDouble(cell[2]);
+
+                                    double top = Convert.ToDouble(cell[3]);
+                                    double left = Convert.ToDouble(cell[4]);
+
+                                    Canvas.SetTop(rect, top);
+                                    Canvas.SetLeft(rect, left);
+
+                                    canvas_container.Children.Add(rect);
+                                    break;
+                                case "square":
+                                    Rectangle sqr = new Rectangle();
+                                    sqr.Stroke = new SolidColorBrush(Colors.MediumVioletRed);
+                                    sqr.Fill = new SolidColorBrush(Colors.MediumPurple);
+
+                                    sqr.Width = Convert.ToDouble(cell[1]);
+                                    sqr.Height = Convert.ToDouble(cell[1]);
+                                    Canvas.SetTop(sqr, Convert.ToDouble(cell[2]));
+                                    Canvas.SetLeft(sqr, Convert.ToDouble(cell[3]));
+
+                                    canvas_container.Children.Add(sqr);
+                                    break;
+                                case "ellipse":
+                                    Ellipse myEllipse = new Ellipse();
+                                    myEllipse.Stroke = Brushes.MediumPurple;
+                                    myEllipse.Fill = Brushes.OrangeRed;
+
+                                    myEllipse.Width = Convert.ToDouble(cell[1]);
+                                    myEllipse.Height = Convert.ToDouble(cell[2]);
+
+                                    Canvas.SetTop(myEllipse, Convert.ToDouble(cell[3]));
+                                    Canvas.SetLeft(myEllipse, Convert.ToDouble(cell[4]));
+
+                                    canvas_container.Children.Add(myEllipse);
+                                    break;
+                                case "triangle":
+                                    // Create a Polygon
+                                    Polygon myPolygon = new Polygon();
+                                    myPolygon.Stroke = Brushes.Black;
+                                    myPolygon.Fill = Brushes.LightSeaGreen;
+                                    myPolygon.StrokeThickness = 2;
+
+                                    // Create a collection of points for the Polygon
+                                    PointCollection myPointCollection = new PointCollection();
+
+                                    double x1 = Convert.ToDouble(cell[1]);
+                                    double y1 = Convert.ToDouble(cell[2]);
+                                    double x2 = Convert.ToDouble(cell[3]);
+                                    double y2 = Convert.ToDouble(cell[4]);
+                                    double x3 = Convert.ToDouble(cell[5]);
+                                    double y3 = Convert.ToDouble(cell[6]);
+
+                                    myPointCollection.Add(new Point(x1, y1));
+                                    myPointCollection.Add(new Point(x2, y2));
+                                    myPointCollection.Add(new Point(x3, y3));
+
+                                    // Set Polygon.Points to the PointCollection
+                                    myPolygon.Points = myPointCollection;
+                                    canvas_container.Children.Add(myPolygon);
+                                    break;
+                                default:
+                                    MessageBox.Show("Invalid Shape");
+                                    break;
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Error occured");
+                }
+
+            }
+        }
+        
         private void handleCreateLine(object sender, RoutedEventArgs e)
         {
             Line line = new Line();
